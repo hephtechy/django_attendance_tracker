@@ -12,7 +12,7 @@ from datetime import datetime, date
 from twilio.rest import Client
 from django.http import HttpResponse
 
-import pywhatkit
+# import pywhatkit
 from .utils import is_within_radius
 
 from twilio.base.exceptions import TwilioRestException
@@ -52,14 +52,14 @@ message = client.messages.create(
 
 print(message.body)
 
-def twilio(request):
-    # chat_HR()
-    phone_number = "+2347037006829"
-    message = "message"
-
-    pywhatkit.sendwhatmsg_instantly(phone_number, message)
-    print("Whatsapp message sent!!!")
-    return HttpResponse("Hello, World!")
+# def twilio(request):
+#     # chat_HR()
+#     phone_number = "+2347037006829"
+#     message = "message"
+#
+#     pywhatkit.sendwhatmsg_instantly(phone_number, message)
+#     print("Whatsapp message sent!!!")
+#     return HttpResponse("Hello, World!")
 
 
 def check_distance(request):
