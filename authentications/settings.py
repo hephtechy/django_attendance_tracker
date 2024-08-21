@@ -13,12 +13,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_4!y0q5czhlw$ggsa+m)osd(yby80oap3!u_t*a@wr^so=eq%2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # DEBUG = 'RENDER' not in os.environ
 
-# ALLOWED_HOSTS = ['127.0.0.1','.ngrok.io']
+# ALLOWED_HOSTS = ['*','localhost','127.0.0.1','https://ea76-129-205-113-178.ngrok-free.app','.ngrok.io']
 ALLOWED_HOSTS = ['*']
 
+# CSRF_TRUSTED_ORIGINS = ['https://ea76-129-205-113-178.ngrok-free.app']
+
+
+# ALLOWED_HOSTS = ['27e8-129-205-113-178.ngrok-free.app', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -105,7 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -129,9 +135,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = 'media/'
 
 
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# if not DEBUG:
+#     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+#     # and renames the files with unique names for each version to support long-term caching
+#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

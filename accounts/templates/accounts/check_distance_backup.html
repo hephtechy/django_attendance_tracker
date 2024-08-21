@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Distance</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
+</head>
+<body>
+    <h1>Check Distance from Reference Point</h1>
+    <form id="check-distance-form" method="post" action="{% url 'check_distance' %}">
+        {% csrf_token %}
+        <label for="easting">Easting (X):</label>
+        <input type="text" id="easting" name="easting" required readonly>
+        <br>
+        <label for="northing">Northing (Y):</label>
+        <input type="text" id="northing" name="northing" required readonly>
+        <br>
+        <button type="submit">Check Distance</button>
+    </form>
+
+    <div id="result">
+        {% if result is not None %}
+            <p>{{ result }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // Function to convert latitude and longitude to UTM (Easting and Northing)
+        function latLonToUTM(lat, lon) {
+            const proj4 = window.proj4;
+            const utmCoords = proj4('EPSG:4326', 'EPSG:32633', [lon, lat]);  // UTM zone 33N example
+            return { easting: utmCoords[0], northing: utmCoords[1] };
+        }
+
+        // Get the user's current position
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                // Convert latitude and longitude to Easting and Northing
+                const { easting, northing } = latLonToUTM(lat, lon);
+
+                // Set the values in the form
+                document.getElementById('easting').value = easting;
+                document.getElementById('northing').value = northing;
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    </script>
+</body>
+</html>

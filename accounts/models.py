@@ -21,3 +21,20 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.date}"
+
+class ReferencePoint(models.Model):
+    name = models.CharField(max_length=100)  # Optional, for naming the reference point
+    easting = models.FloatField()  # X coordinate
+    northing = models.FloatField()  # Y coordinate
+
+    def __str__(self):
+        return self.name or f"Point({self.easting}, {self.northing})"
+
+
+# class ReferencePoint(models.Model):
+#     name = models.CharField(max_length=100)  # Optional, for naming the reference point
+#     latitude = models.FloatField()
+#     longitude = models.FloatField()
+#
+#     def __str__(self):
+#         return self.name or f"Point({self.latitude}, {self.longitude})"
